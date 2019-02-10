@@ -1,0 +1,38 @@
+drop database if exists mbstu;
+ create database mbstu;
+  use mbstu;
+create table t_student(
+                 sID varchar(20),
+                 studentName varchar(20),
+                 mobileNo varchar(20),
+                 deptName varchar(20),
+
+                constraint sid_pk primary key(sID)
+                );
+create table t_clazz(
+               cID varchar(20),
+               classDate date,
+               constraint cid_pk primary key(cID)
+               );
+create table t_attendance(
+                      aID varchar(20),
+                      clazz_id varchar(20),
+                      student_id varchar(20),
+                      student_status varchar(20),
+
+                     constraint aid_pk primary key(aID),
+
+                     constraint cid_fk foreign key(clazz_id)
+                     references t_clazz(cID),
+
+                     constraint sid_fk foreign key(student_id)
+                    references t_student(sID)
+
+                  );
+ 
+create table t_admin(
+                  adName varchar(20),
+                  adPassword varchar(20),
+                  constraint ad_pk primary key(adName)
+
+                );
